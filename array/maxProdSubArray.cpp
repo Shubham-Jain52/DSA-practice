@@ -35,9 +35,10 @@ public:
         for(int i = 1; i < len; i++){
            int curr = nums[i];
 
-           int temp_max = max({curr, curr*local_biggest, curr*local_smallest});
-           local_biggest = max({curr, local_biggest*curr,local_smallest*curr});
-           local_smallest = min({curr, local_biggest*curr, local_smallest*curr});
+           int temp_max = max({curr, curr*local_biggest, curr*local_smallest}); // finding the local biggest by comparing the current element, current element*local biggest and current element*local smallest.
+           
+           local_smallest = min({curr, local_biggest*curr, local_smallest*curr}); // finding the local smallest by comparing the current element, current element*local biggest and current element*local smallest.
+           
            local_biggest = temp_max;
 
            biggest = max(biggest, local_biggest);
