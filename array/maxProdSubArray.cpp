@@ -23,3 +23,25 @@
 //     }
 // };
 
+//best approach
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int len = nums.size();
+        if(len==0) return 0;
+        int biggest = nums[0];
+        int local_biggest = nums[0];
+        int local_smallest = nums[0];
+        for(int i = 1; i < len; i++){
+           int curr = nums[i];
+
+           int temp_max = max({curr, curr*local_biggest, curr*local_smallest});
+           local_biggest = max({curr, local_biggest*curr,local_smallest*curr});
+           local_smallest = min({curr, local_biggest*curr, local_smallest*curr});
+           local_biggest = temp_max;
+
+           biggest = max(biggest, local_biggest);
+        }
+        return biggest;
+    }
+};
